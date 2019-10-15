@@ -6,11 +6,11 @@ import java.util.List;
  * <p>
  * For example:
  * Given binary tree [3,9,20,null,null,15,7],
- *   3
- *  / \
+ * 3
+ * / \
  * 9  20
- *   /  \
- *  15   7
+ * /  \
+ * 15   7
  * return its level order traversal as:
  * [
  * [3],
@@ -58,12 +58,13 @@ public class BinaryTreeLevelOrderTraversal {
             subList.add(node.val);
         }
 
+        level++;
         if (node.left != null) {
-            addLevelOrder(++level, node.left, list);
+            addLevelOrder(level, node.left, list);
         }
 
         if (node.right != null) {
-            addLevelOrder(++level, node.right, list);
+            addLevelOrder(level, node.right, list);
         }
     }
 }
