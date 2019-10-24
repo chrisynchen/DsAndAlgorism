@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * In-order traversal is to traverse the left subtree first. Then visit the root. Finally, traverse the right subtree.
+ *
  * Given a binary tree, return the inorder traversal of its nodes' values.
  *
  * Example:

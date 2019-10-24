@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Post-order traversal is to traverse the left subtree first. Then traverse the right subtree. Finally, visit the root.
+ *
  *Given a binary tree, return the postorder traversal of its nodes' values.
  *
  * Example:

@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Pre-order traversal is to visit the root first. Then traverse the left subtree. Finally, traverse the right subtree.
+ *
  * Given a binary tree, return the preorder traversal of its nodes' values.
  * <p>
  * Example:
