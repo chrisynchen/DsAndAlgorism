@@ -1,5 +1,31 @@
 package leetcode.binary_search;
 
+/**
+ * 81. Search in Rotated Sorted Array II (Medium)
+ *
+ *
+ * Add to List
+ *
+ * Share
+ * Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+ *
+ * (i.e., [0,0,1,2,2,5,6] might become [2,5,6,0,0,1,2]).
+ *
+ * You are given a target value to search. If found in the array return true, otherwise return false.
+ *
+ * Example 1:
+ *
+ * Input: nums = [2,5,6,0,0,1,2], target = 0
+ * Output: true
+ * Example 2:
+ *
+ * Input: nums = [2,5,6,0,0,1,2], target = 3
+ * Output: false
+ * Follow up:
+ *
+ * This is a follow up problem to Search in Rotated Sorted Array, where nums may contain duplicates.
+ * Would this affect the run-time complexity? How and why?
+ */
 public class SearchInRotatedSortedArray {
 
     public static void main(String[] args) {
@@ -7,39 +33,36 @@ public class SearchInRotatedSortedArray {
         System.out.println("result:" + search(test, 8));
     }
 
-    private static int search(int[] nums, int target) {
+    private static boolean search(int[] nums, int target) {
+        if (nums == null || nums.length == 0) return false;
 
         int startIndex = 0;
         int endIndex = nums.length - 1;
-
         while (startIndex <= endIndex) {
-            if(nums[startIndex] == target) return startIndex;
+            int mid = startIndex + (endIndex - startIndex) / 2;
 
-            if(nums[endIndex] == target) return endIndex;
+            if (nums[mid] == target) return true;
 
-            int mid = (startIndex + endIndex) / 2;
-            if (startIndex != endIndex) {
-                System.out.println("mid:" + mid +", startIndex:" + startIndex + ", endIndex:" + endIndex);
-            }
-
-            if (target == nums[mid]) return mid;
-
-            if (target > nums[mid]) {
-                if (target > nums[endIndex]) {
+            if (nums[mid] > nums[startIndex] || nums[mid] > nums[endIndex]) {
+                // left sorted or right unsorted
+                if (target >= nums[startIndex] && target < nums[mid]) {
                     endIndex = mid - 1;
                 } else {
                     startIndex = mid + 1;
                 }
-            } else if (target < nums[mid]) {
-                if (target > nums[startIndex]) {
-                    endIndex = mid - 1;
-                } else {
+            } else if (nums[mid] < nums[startIndex] || nums[mid] < nums[endIndex]) {
+                // right sorted or left unsorted
+                if (target > nums[mid] && target <= nums[endIndex]) {
                     startIndex = mid + 1;
+                } else {
+                    endIndex = mid - 1;
                 }
+            } else {
+                endIndex--;
             }
         }
 
-        return -1;
+        return false;
     }
 
     private static int binarySearchForSortedArray(int[] sortedArray, int target, int start, int end) {
