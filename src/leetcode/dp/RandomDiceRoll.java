@@ -7,25 +7,37 @@ package leetcode.dp;
  */
 public class RandomDiceRoll {
     public static void main(String[] args) {
+        System.out.println(dp(1));
+        System.out.println(dp(2));
+        System.out.println(dp(3));
+        System.out.println(dp(4));
+        System.out.println(dp(5));
+        System.out.println(dp(6));
+        System.out.println(dp(7));
         System.out.println(dp(610));
     }
 
-    //Time complexity is O(6*N), space complexity is O(N)
+    //Time complexity is O(N), space complexity is O(N)
     private static long dp(int n) {
 
         if (n <= 0) return 0;
 
-        if (n == 1) return 1;
+        if (n == 1 || n == 2 || n == 3 || n == 4 || n == 5 || n == 6) return (long) Math.pow(2, n - 1);
 
-        long[] a = new long[n];
-        a[0] = 1;
-        a[1] = 1;
-        for (int i = 2; i < n; i++) {
-            for (int j = 1; j <= i && j <= 6; j++) {
-                a[i] += a[i - j];
-            }
+        long[] dp = new long[n];
+        for (int i = 0; i < 6; i++) {
+            dp[i] = (long) Math.pow(2, n);
+        }
+        //dp[0]
+        //dp[1]
+        //dp[2]
+        //dp[3]
+        //dp[4]
+        //dp[5]
+        for (int i = 6; i < n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3] + dp[i - 4] + dp[i - 5] + dp[i - 6];
         }
 
-        return a[n - 1];
+        return dp[n - 1];
     }
 }
