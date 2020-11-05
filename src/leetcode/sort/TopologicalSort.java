@@ -30,7 +30,7 @@ public class TopologicalSort {
         adj.get(v).add(w);
     }
 
-    static void topologicalSortUtil(List<List<Integer>> adj, int v, boolean visited[],
+    private static void topologicalSortUtil(List<List<Integer>> adj, int v, boolean[] visited,
                                     Stack<Integer> stack) {
         // Mark the current node as visited.
         visited[v] = true;
@@ -47,27 +47,27 @@ public class TopologicalSort {
 
         // Push current vertex to stack
         // which stores result
-        stack.push(new Integer(v));
+        stack.push(v);
     }
 
     // The function to do Topological Sort.
     // It uses recursive topologicalSortUtil()
-    static void topologicalSort(List<List<Integer>> adj, int V) {
-        Stack<Integer> stack = new Stack<Integer>();
+    static void topologicalSort(List<List<Integer>> adj, int n) {
+        Stack<Integer> stack = new Stack<>();
 
         // Mark all the vertices as not visited
-        boolean visited[] = new boolean[V];
+        boolean[] visited = new boolean[n];
 
         // Call the recursive helper
         // function to store
         // Topological Sort starting
         // from all vertices one by one
-        for (int i = 0; i < V; i++)
-            if (visited[i] == false)
+        for (int i = 0; i < n; i++)
+            if (!visited[i])
                 topologicalSortUtil(adj, i, visited, stack);
 
         // Print contents of stack
-        while (stack.empty() == false)
+        while (!stack.empty())
             System.out.print(stack.pop() + " ");
     }
 }
