@@ -1,5 +1,9 @@
 package leetcode.array.kmp;
 
+/**
+ * http://jakeboxer.com/blog/2009/12/13/the-knuth-morris-pratt-algorithm-in-my-own-words/
+ *
+ */
 public class Kmp {
 
     private static void kmpSearch(String pat, String txt) {

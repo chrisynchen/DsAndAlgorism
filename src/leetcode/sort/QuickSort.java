@@ -5,12 +5,18 @@ package leetcode.sort;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int[] temp = {1, 3, 2, 5, 4, 8, 7, 6};
-        int[] temp1 = {6, 7, 8, 5, 5, 4, 1, 2, 3};
-        int[] temp2 = {5, 1, 1, 2, 0, 0};
-        quickSort(temp2, 0, temp2.length - 1);
-        for (int element : temp2) {
-            System.out.println(element);
+//        int[] temp = {1, 3, 2, 5, 4, 8, 7, 6};
+//        int[] temp1 = {6, 7, 8, 5, 5, 4, 1, 2, 3};
+//        int[] temp2 = {5, 1, 1, 2, 0, 0};
+//        quickSort(temp2, 0, temp2.length - 1);
+//        for (int element : temp2) {
+//            System.out.println(element);
+//        }
+        String s = "1,2,3,4,,,,";
+        String[] temp = s.split(",");
+        System.out.println(temp);
+        for (String r : temp) {
+            System.out.println(r);
         }
     }
 
