@@ -5,8 +5,8 @@ import java.util.PriorityQueue;
 public class ValidTask {
     //    one thread and sorted schedule [a, b] a = start time, b = duration
 //    check the program can insert to run on the thread
-//    ex: schedule = [[1, 5], [8, 3]], program = [3,2]
-//
+//    ex: schedule = [[1, 5], [8, 3]], program = [3,2] => false
+//    ex: schedule = [[1, 5], [8, 3]], program = [6,2] => true
     public static void main(String[] args) {
         int[][] schedules = new int[][]{{1, 4}, {8, 3}};
         int[] newSchedule = new int[]{11, 10};
