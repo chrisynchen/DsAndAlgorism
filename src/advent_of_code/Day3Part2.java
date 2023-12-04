@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Day3Part2 {
     public static void main(String[] args) {
-        Path path = Paths.get("src/advent_of_code/day3part2.txt");
+        Path path = Paths.get("src/advent_of_code/test_data/day3part2.txt");
         String[] arr = null;
         try {
             final List<String> lines = Files.readAllLines(path, Charset.defaultCharset());

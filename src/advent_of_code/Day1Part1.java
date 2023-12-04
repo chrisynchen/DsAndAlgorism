@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Day1Part1 {
     public static void main(String[] args) {
-        Path path = Paths.get("src/advent_of_code/day1part1.txt");
+        Path path = Paths.get("src/advent_of_code/test_data/day1part1.txt");
         String[] arr = null;
         try {
             final List<String> lines = Files.readAllLines(path, Charset.defaultCharset());

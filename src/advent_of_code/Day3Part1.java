@@ -11,7 +11,7 @@ import java.util.TreeSet;
 
 public class Day3Part1 {
     public static void main(String[] args) {
-        Path path = Paths.get("src/advent_of_code/day3part1.txt");
+        Path path = Paths.get("src/advent_of_code/test_data/day3part1.txt");
         String[] arr = null;
         try {
             final List<String> lines = Files.readAllLines(path, Charset.defaultCharset());
