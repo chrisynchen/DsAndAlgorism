@@ -13,7 +13,10 @@ public class Day5Part2 {
         try {
             final List<String> lines = Files.readAllLines(path, Charset.defaultCharset());
             arr = lines.toArray(new String[lines.size()]);
+            long start = System.currentTimeMillis();
             System.out.println(solve(arr));
+            long runTime = System.currentTimeMillis() - start;
+            System.out.println("Run Time: " + (runTime / (1000 * 60.0)));
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -47,15 +50,15 @@ public class Day5Part2 {
         int l = 0;
         int r = list.size() - 1;
 
-        while(l <= r) {
+        while (l <= r) {
             int mid = l + r >> 1;
             long[] current = list.get(mid);
             long source = current[1];
             long dest = current[0];
             long range = current[2];
-            if(seed >= source && seed < source + range) {
+            if (seed >= source && seed < source + range) {
                 return dest + seed - source;
-            } else if(seed < source) {
+            } else if (seed < source) {
                 r = mid - 1;
             } else {
                 l = mid + 1;
