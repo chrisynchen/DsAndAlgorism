@@ -119,43 +119,7 @@ public class Day12Part1 {
             }
 
         }
-//        System.out.println("i:" + i + ", j:" + j + ", mustDot:" + mustDot + ", result:" + result);
         dp[i][j][mustDotIndex] = result;
         return result;
-    }
-
-    private static long countArrangements(char[] chars, boolean[] springs){
-        int n = chars.length;
-        int m = springs.length;
-        long[][] dp = new long[n+1][m+1];
-        dp[n][m] = 1;
-
-        for (int i = n - 1; i >= 0; i--) {
-            for (int j = m - 1; j >= 0; j--) {
-                boolean damaged = false, operational = false;
-                switch (chars[i]){
-                    case '#': {
-                        damaged = true;
-                        break;
-                    }
-                    case '.':{
-                        operational = true;
-                        break;
-                    }
-                    default:{
-                        operational = true;
-                        damaged = true;
-                    }
-                }
-                long sum = 0;
-                if(damaged && springs[j]){
-                    sum += dp[i+1][j+1];
-                } else if (operational && !springs[j]) {
-                    sum += dp[i+1][j+1] + dp[i+1][j];
-                }
-                dp[i][j] = sum;
-            }
-        }
-        return dp[0][0];
     }
 }
