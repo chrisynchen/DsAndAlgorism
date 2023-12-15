@@ -44,51 +44,62 @@ public class Day13Part2 {
                 }
 
                 boolean valid = false;
-                int hIndex = -1;
-                int vIndex = -1;
-                for(int x = 0; x < m; x++) {
+                long prevResult = partOneAns(rows, cols);
+                for (int x = 0; x < m; x++) {
                     long first = rows[x];
-                    for(int y = x + 1; y < m; y++) {
+                    for (int y = x + 1; y < m; y++) {
                         long second = rows[y];
                         long diff = Math.abs(first - second);
-                        if((diff & (diff - 1)) == 0) {
-                            rows[y] = rows[x];
-                            hIndex = x;
-//                            int log = (int) Math.log(diff);
-//                            if(rows[x] > rows[y]) {
-//                                rows[x] = rows[y];
-//                                cols[log] -= (1 << x);
-//                            } else {
-//                                rows[y] = rows[x];
-//                                cols[log] -= (1 << y);
-//                            }
+                        if ((diff & (diff - 1)) == 0) {
+                            if (rows[x] > rows[y]) {
+                                long temp = rows[x];
+                                rows[x] = rows[y];
+                                if(prevResult == partOneAns(rows, cols)) {
+                                    rows[x] = temp;
+                                    rows[y] = temp;
+                                }
+                            } else {
+                                long temp = rows[y];
+                                rows[y] = rows[x];
+                                if(prevResult == partOneAns(rows, cols)) {
+                                    rows[x] = temp;
+                                    rows[y] = temp;
+                                }
+                            }
                             valid = true;
                             break;
                         }
                     }
-                    if(valid) break;
+                    if (valid) break;
                 }
-                if(!valid) {
-                    for(int x = 0; x < n; x++) {
+                if (!valid) {
+                    for (int x = 0; x < n; x++) {
                         long first = cols[x];
-                        for(int y = x + 1; y < n; y++) {
+                        for (int y = x + 1; y < n; y++) {
                             long second = cols[y];
                             long diff = Math.abs(first - second);
-                            if((diff & (diff - 1)) == 0) {
-                                vIndex = x;
-//                                int log = (int) Math.log(diff);
-//                                if(cols[x] > cols[y]) {
-//                                    cols[x] = cols[y];
-//                                    rows[log] -= (1 << x);
-//                                } else {
-//                                    cols[y] = cols[x];
-//                                    rows[log] -= (1 << y);
-//                                }
+                            if ((diff & (diff - 1)) == 0) {
+
+                                if (cols[x] > cols[y]) {
+                                    long temp = cols[x];
+                                    cols[x] = cols[y];
+                                    if(prevResult == partOneAns(rows, cols)) {
+                                        cols[x] = temp;
+                                        cols[y] = temp;
+                                    }
+                                } else {
+                                    long temp = cols[y];
+                                    cols[y] = cols[x];
+                                    if(prevResult == partOneAns(rows, cols)) {
+                                        cols[x] = temp;
+                                        cols[y] = temp;
+                                    }
+                                }
                                 valid = true;
                                 break;
                             }
                         }
-                        if(valid) break;
+                        if (valid) break;
                     }
                 }
 
@@ -103,7 +114,7 @@ public class Day13Part2 {
                         a--;
                         b++;
                     }
-                    if(b == m || a == -1) {
+                    if (b == m || a == -1) {
                         rResult = Math.max(rResult, j + 1);
                     }
                 }
@@ -119,16 +130,64 @@ public class Day13Part2 {
                         a--;
                         b++;
                     }
-                    if(b == n || a == -1) {
+                    if (b == n || a == -1) {
                         cResult = Math.max(cResult, j + 1);
                     }
                 }
-
-                result += (rResult * 100) + cResult;
+                if(valid) {
+                    result += (rResult * 100);
+                } else {
+                    result += cResult;
+                }
+//                result += (rResult * 100) + cResult;
                 prevIndex = i + 1;
             }
         }
 
         return result;
     }
+
+    private static long partOneAns(long[] rows, long[] cols) {
+        long result = 0;
+        int n = cols.length;
+        int m = rows.length;
+
+        int rResult = 0;
+        for (int j = 0; j < m - 1; j++) {
+            int a = j;
+            int b = j + 1;
+            while (a >= 0 && b < m) {
+                if (rows[a] != rows[b]) {
+                    break;
+                }
+                a--;
+                b++;
+            }
+            if (b == m || a == -1) {
+                rResult = Math.max(rResult, j + 1);
+            }
+        }
+
+        int cResult = 0;
+        for (int j = 0; j < n - 1; j++) {
+            int a = j;
+            int b = j + 1;
+            while (a >= 0 && b < n) {
+                if (cols[a] != cols[b]) {
+                    break;
+                }
+                a--;
+                b++;
+            }
+            if (b == n || a == -1) {
+                cResult = Math.max(cResult, j + 1);
+            }
+        }
+
+        result += (rResult * 100) + cResult;
+
+        return result;
+    }
+
+    //22100 too low
 }
